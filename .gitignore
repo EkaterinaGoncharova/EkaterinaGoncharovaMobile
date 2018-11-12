@@ -1,0 +1,9 @@
+.idea
+.allure
+*.class
+*.iml
+*.jar
+*.log
+out
+target
+build
