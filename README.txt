@@ -32,13 +32,13 @@ and USB debugging
 
 5. "What should be improved/changed in existing test code? Why, for what?"
 
-1) thread.sleep() shouldn't be use in production code;
-2) DriverSetup shouldn't be in test package;
+1) thread.sleep() shouldn't be used in production code;
+2) DriverSetup shouldn't be in 'test' package;
 3) System.out.println is used instead of logger;
 4) comment/uncomment is used to change test mode from 'native' to 'web'
-or to change a type of locator
-5) values are hardcoded on test, they should be moved from test to another file;
-6) used absolute path;
+or to change a type of locator;
+5) values are hardcoded in test, they should be moved from test to another file;
+6) shouldn't use absolute path;
 7) code dublicated in DriverSetup class;
 8) assertions should be used, test cannot be a test without assertions.
 
