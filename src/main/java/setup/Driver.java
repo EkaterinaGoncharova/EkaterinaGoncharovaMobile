@@ -1,12 +1,11 @@
 package setup;
 
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.io.File;
 import java.net.URL;
 
 /**
@@ -24,6 +23,9 @@ public class Driver extends TestProperties {
     protected String DRIVER;
     protected String DEVICE_NAME;
     protected String TITLE;
+    protected String UDID;
+    protected String APP_PACKAGE;
+    protected String APP_ACTIVITY;
 
 
     protected void prepareDriver() throws Exception {
@@ -37,11 +39,13 @@ public class Driver extends TestProperties {
         DRIVER = getProp("driver");
         DEVICE_NAME = getProp("devicename");
         TITLE = getProp("title");
+        UDID = getProp("udid");
+        APP_PACKAGE = getProp("appPackage");
+        APP_ACTIVITY = getProp("appActivity");
 
         // Setup test platform: Android or iOS. Browser also depends on a platform.
         switch (TEST_PLATFORM) {
             case "Android":
-                capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME); // default Android emulator
                 browserName = "Chrome";
                 break;
             case "iOS":
@@ -51,13 +55,15 @@ public class Driver extends TestProperties {
                 throw new Exception("Unknown mobile platform");
         }
         capabilities.setCapability(MobileCapabilityType.PLATFORM_NAME, TEST_PLATFORM);
+        capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, DEVICE_NAME);
+        capabilities.setCapability(MobileCapabilityType.UDID, UDID);
 
         // Setup type of application: nativeTests, webTests (or hybrid)
-        if (AUT != null && SUT == null) {
+        if (APP_PACKAGE != null && APP_ACTIVITY != null && SUT == null) {
             // Native
-            File app = new File(AUT);
-            capabilities.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-        } else if (SUT != null && AUT == null) {
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_PACKAGE, APP_PACKAGE);
+            capabilities.setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, APP_ACTIVITY);
+        } else if (SUT != null && APP_PACKAGE == null && APP_ACTIVITY == null) {
             // Web
             capabilities.setCapability(MobileCapabilityType.BROWSER_NAME, browserName);
         } else {
@@ -65,7 +71,7 @@ public class Driver extends TestProperties {
         }
 
         // Init driver for local Appium server with capabilities have been set
-        if (driverSingle == null) driverSingle = new AndroidDriver(new URL(DRIVER), capabilities);
+        if (driverSingle == null) driverSingle = new AppiumDriver(new URL(DRIVER), capabilities);
         // Set an object to handle timeouts
         if (waitSingle == null) waitSingle = new WebDriverWait(driver(), 10);
     }
