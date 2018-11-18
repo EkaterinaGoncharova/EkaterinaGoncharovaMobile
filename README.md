@@ -37,12 +37,19 @@ devicename=LGE Nexus 5
 
 To change a device or a platform we have to change .properties file manually.
 We can make a typo or change a devicename, but forget to change a platform name.
-We should reduce amount of manual operations and makedifferent .xml file for all
+We should reduce amount of manual operations and make different .xml file for all
 types of test runs. I added the following:
 
-- MobileFarmNativeAndroidTests.xml
-- MobileFarmWebAndroidTests.xml
-- MobileFarmWebIOSTests.xml
+- NativeAndroidTests.xml
+- WebAndroidTests.xml
+- WebIOSTests.xml
 
-Parameter which previously were in .properties files were moved to these .xml files
-as parameters. Now to run tests we should only change -DsuiteXmlFile maven parameter.
+I pass 'currentProps' parameter from this .xml file to SetUp() method.
+
+```
+@Parameters("currentProps")
+public void setUp(String currentProps)
+```
+
+This parameter contains name of individual .property file for this test run.
+To run tests we should only change -DsuiteXmlFile maven parameter.
