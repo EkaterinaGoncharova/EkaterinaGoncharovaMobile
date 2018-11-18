@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name="Native Tests Suite">
+    <parameter name="currentProps" value="mobile_farm_native_android_tests"/>
+    <test name="Mobile farm native Android tests">
+
+        <packages>
+            <package name="scenarios.nativeTests"/>
+        </packages>
+
+    </test>
+</suite>

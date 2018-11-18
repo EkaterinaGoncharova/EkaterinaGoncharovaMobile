@@ -4,14 +4,9 @@ import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import scenarios.Hooks;
-import setup.PropertyFile;
 
 @Test(groups = "native")
 public class SimpleNativeTests extends Hooks {
-
-    protected SimpleNativeTests() {
-        super(PropertyFile.NATIVE);
-    }
 
     @Test(description = "Just click on button 'Add contact'")
     public void simplestTest() throws Exception {

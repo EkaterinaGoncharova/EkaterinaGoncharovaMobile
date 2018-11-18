@@ -33,4 +33,16 @@ Test passed succesfully.
 devicename=LGE Nexus 5
 ```
 
+4. "What’s wrong with our code? How to fix/improve it? Implement your suggestions."
 
+To change a device or a platform we have to change .properties file manually.
+We can make a typo or change a devicename, but forget to change a platform name.
+We should reduce amount of manual operations and makedifferent .xml file for all
+types of test runs. I added the following:
+
+- MobileFarmNativeAndroidTests.xml
+- MobileFarmWebAndroidTests.xml
+- MobileFarmWebIOSTests.xml
+
+Parameter which previously were in .properties files were moved to these .xml files
+as parameters. Now to run tests we should only change -DsuiteXmlFile maven parameter.

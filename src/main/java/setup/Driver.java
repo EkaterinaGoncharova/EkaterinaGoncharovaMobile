@@ -5,12 +5,14 @@ import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.Parameters;
 
 import java.net.URL;
 
 /**
  * Initialize a driver with test properties
  */
+@Parameters({"appPackage", "appActivity", "platform", "driver", "devicename", "sut", "title", "udid"})
 public class Driver extends TestProperties {
     private AppiumDriver driverSingle = null;
     protected DesiredCapabilities capabilities;

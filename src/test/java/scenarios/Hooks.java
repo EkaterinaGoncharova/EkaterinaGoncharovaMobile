@@ -2,6 +2,7 @@ package scenarios;
 
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import setup.Driver;
 import setup.PropertyFile;
@@ -9,15 +10,11 @@ import setup.PropertyFile;
 
 @Test(groups = {"native", "web"})
 public class Hooks extends Driver {
-    private PropertyFile currentProps;
 
-    public Hooks(PropertyFile props) {
-        this.currentProps = props;
-    }
-
+    @Parameters("currentProps")
     @BeforeSuite(description = "Prepare driver to run test(s)")
-    public void setUp() throws Exception {
-        setPropertyFile(currentProps);
+    public void setUp(String currentProps) throws Exception {
+        setPropertyFile(PropertyFile.toPropertyFile(currentProps));
         prepareDriver();
         System.out.println("Driver prepared");
     }

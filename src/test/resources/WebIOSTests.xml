@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Web Tests Suite">
+    <parameter name="currentProps" value="mobile_farm_web_ios_tests"/>
+    <test name="Mobile farm native iOS tests">
+
+        <packages>
+            <package name="scenarios.webTests"/>
+        </packages>
+
+    </test>
+</suite>

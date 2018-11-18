@@ -5,14 +5,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import scenarios.Hooks;
-import setup.PropertyFile;
 
 @Test(groups = "web")
 public class SimpleWebTests extends Hooks {
-
-    protected SimpleWebTests() {
-        super(PropertyFile.WEB);
-    }
 
     @Test(description = "Open website")
     public void webTest() throws Exception {

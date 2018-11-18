@@ -9,7 +9,7 @@ class TestProperties {
     String currentPropFile;
 
     Properties getCurrentProps() throws IOException {
-        FileInputStream in = new FileInputStream("./src/" + currentPropFile);
+        FileInputStream in = new FileInputStream("./src/test/resources/" + currentPropFile);
         currentProps.load(in);
         in.close();
         return currentProps;
