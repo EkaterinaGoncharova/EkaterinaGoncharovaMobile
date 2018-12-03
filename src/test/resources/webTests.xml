@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Native Tests Suite">
+    <test name="Web Android tests">
+
+        <packages>
+            <package name="scenarios.webTests"/>
+        </packages>
+
+    </test>
+</suite>

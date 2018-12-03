@@ -36,7 +36,6 @@ public class Driver extends TestProperties {
         TEST_PLATFORM = getProp("platform");
         DRIVER = getProp("driver");
         DEVICE_NAME = getProp("devicename");
-        TITLE = getProp("title");
 
         // Setup test platform: Android or iOS. Browser also depends on a platform.
         switch (TEST_PLATFORM) {
